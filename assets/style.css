@@ -1,0 +1,141 @@
+/* ------------------
+ styling for the tables 
+   ------------------   */
+
+
+body
+{
+	line-height: 1.6em;
+}
+
+/*YANG DIPAKE*/
+#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 16px;
+	margin: 5px;
+	width: 940px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#rounded-corner thead th.rounded-company
+{
+	background: #b9c9fe url('../assets/images/left.png') left -1px no-repeat;
+}
+#rounded-corner thead th.rounded-q4
+{
+	background: #b9c9fe url('../assets/images/right.png') right -1px no-repeat;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 18px;
+	color: #039;
+	background: #b9c9fe;
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+}
+#rounded-corner tfoot td.rounded-foot-left
+{
+	background: #e8edff url('../assets/images/botleft1.png') left bottom no-repeat;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #e8edff url('../assets/images/botright1.png') right bottom no-repeat;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #d0dafd;
+}
+
+
+#background-image
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+	background: url('table-images/blurry.jpg') 330px 59px no-repeat;
+}
+#background-image th
+{
+	padding: 12px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #339;
+}
+#background-image td
+{
+	padding: 9px 12px;
+	color: #669;
+	border-top: 1px solid #fff;
+}
+#background-image tfoot td
+{
+	font-size: 11px;
+}
+#background-image tbody td
+{
+	background: url('table-images/back.png');
+}
+* html #background-image tbody td
+{
+	/* 
+	   ----------------------------
+		PUT THIS ON IE6 ONLY STYLE 
+		AS THE RULE INVALIDATES
+		YOUR STYLESHEET
+	   ----------------------------
+	*/
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='table-images/back.png',sizingMethod='crop');
+	background: none;
+}	
+#background-image tbody tr:hover td
+{
+	color: #339;
+	background: none;
+}
+
+
+
+#one-column-emphasis
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 16px;
+	margin: 5px;
+	width: 940px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#one-column-emphasis th
+{
+	font-size: 16px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #039;
+}
+#one-column-emphasis td
+{
+	padding: 10px 15px;
+	color: #669;
+	border-top: 1px solid #e8edff;
+}
+.oce-first
+{
+	background: #d0dafd;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+#one-column-emphasis tr:hover td
+{
+	color: #339;
+	background: #eff2ff;
+}
