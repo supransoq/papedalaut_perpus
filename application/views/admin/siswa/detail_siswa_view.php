@@ -49,7 +49,7 @@
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['gender']; ?></span></td>
         </tr>
         <tr>
-			<td>Gol. Darah: </td>
+			<td>Golongan Darah: </td>
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['gol_darah']; ?></span></td>
         </tr>
 		<tr>
@@ -93,7 +93,7 @@
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo "Telepon : ".$siswa['telepon'].", No. HP : ".$siswa['no_hp']; ?></span></td>
         </tr>
 		<tr>
-        	<td>Jarak : </td>
+        	<td>Jarak ke Sekolah: </td>
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['jarak']; ?></span></td>
         </tr>
 		<tr>
@@ -108,10 +108,7 @@
         	<td>Pekerjaan Ayah : </td>
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['pekerjaan_ayah']; ?></span></td>
         </tr>
-		<tr>
-        	<td>Penghasilan Ayah : </td>
-			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['penghasilan_ayah']; ?></span></td>
-        </tr>
+
 		<tr>
         	<td>Nama Ibu : </td>
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo strtoupper($siswa['nama_ibu']); ?></span></td>
@@ -121,8 +118,8 @@
 			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['pekerjaan_ibu']; ?></span></td>
         </tr>
 		<tr>
-        	<td>Penghasilan Ibu : </td>
-			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['penghasilan_ibu']; ?></span></td>
+        	<td>Penghasilan Orang Tua : </td>
+			<td><span style="color:#000; width: 200px; height: 40px;font-size:20px;font-style:bold;"> <?php echo $siswa['penghasilan_ortu']; ?></span></td>
         </tr>
 		<tr>
         	<td></td>

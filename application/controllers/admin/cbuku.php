@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class csiswa extends CI_Controller {
+class cbuku extends CI_Controller {
 	
 	function __construct(){ 
 		
@@ -10,7 +10,7 @@ class csiswa extends CI_Controller {
             // redirect('admin_login', 'refresh');
 		
 		// }
-		$this->load->model("msiswa");
+		$this->load->model("mbuku");
 		$this->load->library('template');
 		$this->load->helper(array('url','tanggal','enum','form','date'));
 		
@@ -35,9 +35,9 @@ class csiswa extends CI_Controller {
 	function lihat(){
 		if(count($_POST)>0){
 			$id=$_POST['ID'];
-			$data['siswa']=$this->msiswa->getsiswabyid($id);
+			$data['buku']=$this->mbuku->getbukubyid($id);
 			
-			$this->load->view("admin/siswa/detail_siswa_view",$data);
+			$this->load->view("admin/buku/detail_buku_view",$data);
 		}
 	}
 	
@@ -74,7 +74,7 @@ class csiswa extends CI_Controller {
 				$config['suffix'] = "/true/4/".$key."/".$value."')";
 			// }
 		}else{
-			$config['total_rows'] = $this->db->count_all('tbl_siswa');
+			$config['total_rows'] = $this->db->count_all('tbl_buku');
 			$config['base_url'] = "javascript:pagination('".site_url() . "/admin/" .$this->router->fetch_class() . "/browse/";
 			$config['first_url'] = "javascript:pagination('".site_url() . "/admin/" .$this->router->fetch_class() . "/browse/0/true/0')";
 			$config['suffix'] = "/true/0')";
@@ -92,9 +92,9 @@ class csiswa extends CI_Controller {
 		//getdata
 		if($action == 4){
 			$where = "WHERE  ".$key." LIKE '%".$value."%'";
-			$data['siswa']=$this->msiswa->getsiswa($start, $config['per_page'], $where);
+			$data['buku']=$this->mbuku->getbuku($start, $config['per_page'], $where);
 		}else{
-			$data['siswa']=$this->msiswa->getsiswa($start, $config['per_page']);
+			$data['buku']=$this->mbuku->getbuku($start, $config['per_page']);
 		}
 		$data['pagination'] = $this->pagination->create_links();
 		
@@ -110,11 +110,11 @@ class csiswa extends CI_Controller {
 				$data['notif']="";
 			}
 			// $this->template->display('admin/user/browse_user_view',$data);
-			$this->load->view('admin/siswa/browse_siswa_view',$data);
+			$this->load->view('admin/buku/browse_buku_view',$data);
 		}else{
 			$data['notif']="";
-			$data['judul']="SISWA SiPerpus";
-			$this->template->display('admin/siswa/main_siswa_view',$data);
+			$data['judul']="BUKU SiPerpus";
+			$this->template->display('admin/buku/main_buku_view',$data);
 			// $this->load->view('admin/user/main_user_view',$data);
 		}
 	}
@@ -122,16 +122,16 @@ class csiswa extends CI_Controller {
 	function tambah(){
 		
 		// $this->template->display('admin/user/tambahuser_view',$data);
-		$this->load->view("admin/siswa/add_siswa_view");
+		$this->load->view("admin/buku/add_buku_view");
 		
 	}
 	
 	function edit(){
 		if(count($_POST)>0){
 			$id=$_POST['ID'];
-			$data['siswa']=$this->msiswa->getsiswabyid($id);
+			$data['buku']=$this->mbuku->getbukubyid($id);
 			// $this->template->display('admin/user/edituser_view',$data);
-			$this->load->view("admin/siswa/edit_siswa_view",$data);
+			$this->load->view("admin/buku/edit_buku_view",$data);
 		}
 	}
 	
@@ -194,7 +194,7 @@ class csiswa extends CI_Controller {
 				// $tgl_daftar_siswa = "CURRENT_TIMESTAMP";
 				$tgl_ubah_siswa = "";
 				
-				$query = $this->db->insert("tbl_siswa", array(
+				$query = $this->db->insert("tbl_buku", array(
 					"nis" => $nis,
 					"nisn" => $nisn,
 					"nama_depan" => $nama_depan,
@@ -307,7 +307,7 @@ class csiswa extends CI_Controller {
 				// $tgl_ubah_siswa = "NOW( )";
 				
 				
-				$sqlupdate="UPDATE tbl_siswa SET 
+				$sqlupdate="UPDATE tbl_buku SET 
 					nisn = '".$nisn."',
 					nama_depan = '".$nama_depan."',
 					nama_belakang = '".$nama_belakang."',
@@ -360,9 +360,9 @@ class csiswa extends CI_Controller {
 	
 	function hapus(){
 		if(count($_POST)>0){
-			$nis=$_POST['nis'];
+			$kode_buku=$_POST['kode_buku'];
 			
-			$sqldelete= "DELETE FROM tbl_siswa WHERE nis ='".$nis."'";
+			$sqldelete= "DELETE FROM tbl_buku WHERE kode_buku ='".$kode_buku."'";
 			$query=$this->db->query($sqldelete);
 			
 			if($query){
@@ -378,7 +378,7 @@ class csiswa extends CI_Controller {
 			$a = count($b);
 			for ($i = 0; $i < $a; $i++) {
 				if(substr($b[$i],0,2)=="f_"){
-					$this->db->delete("tbl_siswa", array('username' => substr($b[$i], 2)));
+					$this->db->delete("tbl_buku", array('username' => substr($b[$i], 2)));
 				}
 			}
 			

@@ -13,6 +13,22 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
 
 <form id="postedit">
+<?php 		
+	
+	$adaerror = validation_errors();
+	
+	if ($adaerror) {
+	
+	echo "<span style='color:red;font-size:18px;font-style:bold;'>";
+	echo "Maaf, data isian tidak benar.<br><br>";
+	echo $adaerror."</span>";
+	
+	} else {
+	if (isset($notif)){
+		echo "<span style='color:blue;font-size:18px;font-style:bold;'>".$notif."</span>";
+	}
+	}
+?>
 <table id="one-column-emphasis" summary="2007 Major IT Companies' Profit">
     <colgroup>
     	<col class="oce-first" />
@@ -78,7 +94,7 @@
 			</td>
         </tr>
         <tr>
-			<td>Gol. Darah: </td>
+			<td>Golongan Darah: </td>
             <td>
 				<select id="gol_darah" name="gol_darah" style="width: 100px; height: 40px;font-size:20px;font-style:bold;">
 				<option value="" class="option">-PILIH-</option>
@@ -184,7 +200,7 @@
 			</td>
         </tr>
 		<tr>
-        	<td>Jarak : </td>
+        	<td>Jarak ke Sekolah : </td>
             <td>
 				<select id="jarak" name="jarak" style="width: 180px; height: 40px;font-size:20px;font-style:bold;">
 				<option value="" class="option">-PILIH-</option>
@@ -228,25 +244,7 @@
 			<span style='color:red;font-size:12px;font-style:bold;'>  *) </span>
 			</td>
         </tr>
-		<tr>
-        	<td>Penghasilan Ayah : </td>
-            <td>
-			<select id="penghasilan_ayah" name="penghasilan_ayah" style="width: 180px; height: 40px;font-size:20px;font-style:bold;">
-				<option value="" class="option">-PILIH-</option>
-				
-				<?php 
-					$enum_grup  = field_enums ('tbl_siswa','penghasilan_ayah');
-					foreach ($enum_grup as $eg){ ?>
-					
-					<option class="option" value="<?php echo $eg; ?>" <?php if(isset ($siswa['penghasilan_ayah'])&&($siswa['penghasilan_ayah']==$eg)){echo "selected=\"selected\"";}?>>
-						<?php echo $eg; ?>
-					</option>
-					
-				<?php }	?>
-				</select>
-			</td>
-			
-        </tr>
+
 		<tr>
         	<td>Nama Ibu : </td>
             <td><input type="text" id="nama_ibu" name="nama_ibu" value="<?php echo $siswa['nama_ibu']; ?>"style="width: 300px; height: 40px;font-size:20px;font-style:bold;"/><span style='color:red;font-size:12px;font-style:bold;'>  *) </span></td>
@@ -269,15 +267,15 @@
 			</td>
         </tr>
 		<tr>
-        	<td>Penghasilan Ibu : </td>
+        	<td>Penghasilan Orang Tua : </td>
             <td>
-			<select id="penghasilan_ibu" name="penghasilan_ibu" style="width: 180px; height: 40px;font-size:20px;font-style:bold;">
+			<select id="penghasilan_ortu" name="penghasilan_ortu" style="width: 230px; height: 40px;font-size:20px;font-style:bold;">
 				<option value="" class="option">-PILIH-</option>
 				<?php 
-					$enum_grup  = field_enums ('tbl_siswa','penghasilan_ibu');
+					$enum_grup  = field_enums ('tbl_siswa','penghasilan_ortu');
 					foreach ($enum_grup as $eg){ ?>
 					
-					<option class="option" value="<?php echo $eg; ?>" <?php if(isset ($siswa['penghasilan_ibu'])&&($siswa['penghasilan_ibu']==$eg)){echo "selected=\"selected\"";}?>>
+					<option class="option" value="<?php echo $eg; ?>" <?php if(isset ($siswa['penghasilan_ortu'])&&($siswa['penghasilan_ortu']==$eg)){echo "selected=\"selected\"";}?>>
 						<?php echo $eg; ?>
 					</option>
 					
