@@ -109,19 +109,18 @@ class cbuku extends CI_Controller {
 			}else{
 				$data['notif']="";
 			}
-			// $this->template->display('admin/user/browse_user_view',$data);
+			
 			$this->load->view('admin/buku/browse_buku_view',$data);
 		}else{
 			$data['notif']="";
 			$data['judul']="BUKU SiPerpus";
 			$this->template->display('admin/buku/main_buku_view',$data);
-			// $this->load->view('admin/user/main_user_view',$data);
+			
 		}
 	}
 
 	function tambah(){
 		
-		// $this->template->display('admin/user/tambahuser_view',$data);
 		$this->load->view("admin/buku/add_buku_view");
 		
 	}
@@ -130,7 +129,6 @@ class cbuku extends CI_Controller {
 		if(count($_POST)>0){
 			$id=$_POST['ID'];
 			$data['buku']=$this->mbuku->getbukubyid($id);
-			// $this->template->display('admin/user/edituser_view',$data);
 			$this->load->view("admin/buku/edit_buku_view",$data);
 		}
 	}
@@ -138,99 +136,61 @@ class cbuku extends CI_Controller {
 	function simpan_tambah(){
 		if(count($_POST)>0){
 			$config = array(
-				array('field' => 'nis', 'label' => 'NIS', 'rules' => 'required'),
-				array('field' => 'nama_depan', 'label' => 'Nama Depan', 'rules' => 'required'),
-				array('field' => 'tempat_lahir', 'label' => 'Tempat Lahir', 'rules' => 'required'),
-				array('field' => 'tanggal_lahir', 'label' => 'Tanggal Lahir', 'rules' => 'required'),
-				array('field' => 'alamat_rumah', 'label' => 'Alamat Rumah', 'rules' => 'required'),
-				array('field' => 'nama_ayah', 'label' => 'Nama Ayah', 'rules' => 'required'),
-				array('field' => 'pekerjaan_ayah', 'label' => 'Pekerjaan Ayah', 'rules' => 'required'),
-				array('field' => 'nama_ibu', 'label' => 'Nama Ibu', 'rules' => 'required'),
+				array('field' => 'kode_buku', 'label' => 'Kode Buku', 'rules' => 'required'),
+				array('field' => 'prioritas_buku', 'label' => 'Prioritas Buku', 'rules' => 'required'),
+				array('field' => 'judul_buku', 'label' => 'Judul Buku', 'rules' => 'required'),
+				array('field' => 'penulis', 'label' => 'Penulis', 'rules' => 'required'),
+				array('field' => 'penerbit', 'label' => 'Penerbit', 'rules' => 'required'),
+				array('field' => 'tahun_terbit', 'label' => 'Tahun Terbit', 'rules' => 'required'),
 			);
 			
 			$this->form_validation->set_rules($config);
 			if ($this->form_validation->run() == TRUE) {
 				
-				$nis = mysql_real_escape_string($_POST['nis']);
-				$nisn = mysql_real_escape_string($_POST['nisn']);
-				$nama_depan = ucwords(mysql_real_escape_string($_POST['nama_depan']));
-				$nama_belakang = ucwords(mysql_real_escape_string($_POST['nama_belakang']));
-				$nama_panggilan = ucwords(mysql_real_escape_string($_POST['nama_panggilan']));
-				$tempat_lahir = ucwords(mysql_real_escape_string($_POST['tempat_lahir']));
-				$gender = mysql_real_escape_string($_POST['gender']);
-				$tanggal_lahir = mysql_real_escape_string($_POST['tanggal_lahir']);
-				$gol_darah = mysql_real_escape_string($_POST['gol_darah']);
-				$agama = mysql_real_escape_string($_POST['agama']);
-				$suku = mysql_real_escape_string($_POST['suku']);
-				$status_keluarga = mysql_real_escape_string($_POST['status_keluarga']);
-				$saudara_ke = mysql_real_escape_string($_POST['saudara_ke']);
-				$jumlah_saudara = mysql_real_escape_string($_POST['jumlah_saudara']);
-				$warga_negara = mysql_real_escape_string($_POST['warga_negara']);
-				$alamat_rumah = mysql_real_escape_string($_POST['alamat_rumah']);
-				$kode_pos = mysql_real_escape_string($_POST['kode_pos']);
-				$telepon = mysql_real_escape_string($_POST['telepon']);
-				$no_hp = mysql_real_escape_string($_POST['no_hp']);
-				$jarak = mysql_real_escape_string($_POST['jarak']);
+				$kode_buku = mysql_real_escape_string($_POST['kode_buku']);
+				$prioritas_buku = mysql_real_escape_string($_POST['prioritas_buku']);
+				$judul_buku = ucwords(mysql_real_escape_string($_POST['judul_buku']));
+				$subjek = mysql_real_escape_string($_POST['subjek']);
 				
-				$nama_ayah = mysql_real_escape_string($_POST['nama_ayah']);
-				$pekerjaan_ayah = mysql_real_escape_string($_POST['pekerjaan_ayah']);
+				$penulis = ucwords(mysql_real_escape_string($_POST['penulis']));
+				$penerbit = ucwords(mysql_real_escape_string($_POST['penerbit']));
+				$tahun_terbit = mysql_real_escape_string($_POST['tahun_terbit']);
 				
-				$nama_ibu = mysql_real_escape_string($_POST['nama_ibu']);
-				$pekerjaan_ibu = mysql_real_escape_string($_POST['pekerjaan_ibu']);
-				$penghasilan_ortu = mysql_real_escape_string($_POST['penghasilan_ortu']);
+				$bahasa = mysql_real_escape_string($_POST['bahasa']);
+				$panjang = mysql_real_escape_string($_POST['panjang']);
+				$lebar = mysql_real_escape_string($_POST['lebar']);
 				
-				$kendaraan = mysql_real_escape_string($_POST['kendaraan']);
-				$foto = "";
+				$ISBN = mysql_real_escape_string($_POST['ISBN']);
+				$cetakan = mysql_real_escape_string($_POST['cetakan']);
 				$keterangan = mysql_real_escape_string($_POST['keterangan']);
 				
-				$password = "";
 				$user = "admin";
 				
 				$datestring = "Y-m-d H:i:s";
 				$time = time();
 				
-				$tgl_daftar_siswa = date($datestring, $time);
-				
-				// $tgl_daftar_siswa = "CURRENT_TIMESTAMP";
-				$tgl_ubah_siswa = "";
+				$tgl_daftar_buku = date($datestring, $time);
 				
 				$query = $this->db->insert("tbl_buku", array(
-					"nis" => $nis,
-					"nisn" => $nisn,
-					"nama_depan" => $nama_depan,
-					"nama_belakang" => $nama_belakang,
-					"nama_panggilan" => $nama_panggilan,
-					"tempat_lahir" => $tempat_lahir,
-					"tanggal_lahir" => $tanggal_lahir,
-					"gender" => $gender,
-					"gol_darah" => $gol_darah,
-					"agama" => $agama,
-					"suku" => $suku,
-					"status_keluarga" => $status_keluarga,
-					"saudara_ke" => $saudara_ke,
-					"jumlah_saudara" => $jumlah_saudara,
-					"warga_negara" => $warga_negara,
-					"alamat_rumah" => $alamat_rumah,
-					"kode_pos" => $kode_pos,
-					"telepon" => $telepon,
-					"no_hp" => $no_hp,
-					"jarak" => $jarak,
+					"kode_buku" => $kode_buku,
+					"prioritas_buku" => $prioritas_buku,
+					"judul_buku" => $judul_buku,
+					"subjek" => $subjek,
 					
-					"nama_ayah" => $nama_ayah,
-					"pekerjaan_ayah" => $pekerjaan_ayah,
+					"penulis" => $penulis,
+					"penerbit" => $penerbit,
+					"tahun_terbit" => $tahun_terbit,
 					
-					"nama_ibu" => $nama_ibu,
-					"pekerjaan_ibu" => $pekerjaan_ibu,
-					"penghasilan_ortu" => $penghasilan_ortu,
+					"bahasa" => $bahasa,
+					"panjang" => $panjang,
+					"lebar" => $lebar,
 					
-					"kendaraan" => $kendaraan,
-					"foto" => $foto,
+					"ISBN" => $ISBN,
+					"cetakan" => $cetakan,
 					"keterangan" => $keterangan,
-					
-					"password" => $password,
 					"user" => $user,
-					"tgl_daftar_siswa" => $tgl_daftar_siswa,
-					"tgl_ubah_siswa" => $tgl_ubah_siswa
+					
+					"tgl_daftar_buku" => $tgl_daftar_buku
 					
 				));
 				
@@ -250,101 +210,64 @@ class cbuku extends CI_Controller {
 		if(count($_POST)>0){
 			
 			$config = array(
-				array('field' => 'nis', 'label' => 'NIS', 'rules' => 'required'),
-				array('field' => 'nama_depan', 'label' => 'Nama Depan', 'rules' => 'required'),
-				array('field' => 'tempat_lahir', 'label' => 'Tempat Lahir', 'rules' => 'required'),
-				array('field' => 'tanggal_lahir', 'label' => 'Tanggal Lahir', 'rules' => 'required'),
-				array('field' => 'alamat_rumah', 'label' => 'Alamat Rumah', 'rules' => 'required'),
-				array('field' => 'nama_ayah', 'label' => 'Nama Ayah', 'rules' => 'required'),
-				array('field' => 'pekerjaan_ayah', 'label' => 'Pekerjaan Ayah', 'rules' => 'required'),
-				array('field' => 'nama_ibu', 'label' => 'Nama Ibu', 'rules' => 'required'),
+				array('field' => 'kode_buku', 'label' => 'Kode Buku', 'rules' => 'required'),
+				array('field' => 'prioritas_buku', 'label' => 'Prioritas Buku', 'rules' => 'required'),
+				array('field' => 'judul_buku', 'label' => 'Judul Buku', 'rules' => 'required'),
+				array('field' => 'penulis', 'label' => 'Penulis', 'rules' => 'required'),
+				array('field' => 'penerbit', 'label' => 'Penerbit', 'rules' => 'required'),
+				array('field' => 'tahun_terbit', 'label' => 'Tahun Terbit', 'rules' => 'required'),
 			);
 			
 			$this->form_validation->set_rules($config);
 			
 			if ($this->form_validation->run() == TRUE) {
-				$nis = mysql_real_escape_string($_POST['nis']);
-				$nisn = mysql_real_escape_string($_POST['nisn']);
-				$nama_depan = ucwords(mysql_real_escape_string($_POST['nama_depan']));
-				$nama_belakang = ucwords(mysql_real_escape_string($_POST['nama_belakang']));
-				$nama_panggilan = ucwords(mysql_real_escape_string($_POST['nama_panggilan']));
-				$tempat_lahir = ucwords(mysql_real_escape_string($_POST['tempat_lahir']));
-				$tanggal_lahir = mysql_real_escape_string($_POST['tanggal_lahir']);
-				$gender = mysql_real_escape_string($_POST['gender']);
-				$gol_darah = mysql_real_escape_string($_POST['gol_darah']);
-				$agama = mysql_real_escape_string($_POST['agama']);
-				$suku = mysql_real_escape_string($_POST['suku']);
-				$status_keluarga = mysql_real_escape_string($_POST['status_keluarga']);
-				$saudara_ke = mysql_real_escape_string($_POST['saudara_ke']);
-				$jumlah_saudara = mysql_real_escape_string($_POST['jumlah_saudara']);
-				$warga_negara = mysql_real_escape_string($_POST['warga_negara']);
-				$alamat_rumah = mysql_real_escape_string($_POST['alamat_rumah']);
-				$kode_pos = mysql_real_escape_string($_POST['kode_pos']);
-				$telepon = mysql_real_escape_string($_POST['telepon']);
-				$no_hp = mysql_real_escape_string($_POST['no_hp']);
-				$jarak = mysql_real_escape_string($_POST['jarak']);
+				$kode_buku = mysql_real_escape_string($_POST['kode_buku']);
+				$prioritas_buku = mysql_real_escape_string($_POST['prioritas_buku']);
+				$judul_buku = ucwords(mysql_real_escape_string($_POST['judul_buku']));
+				$subjek = mysql_real_escape_string($_POST['subjek']);
 				
-				$nama_ayah = ucwords(mysql_real_escape_string($_POST['nama_ayah']));
-				$pekerjaan_ayah = mysql_real_escape_string($_POST['pekerjaan_ayah']);
+				$penulis = ucwords(mysql_real_escape_string($_POST['penulis']));
+				$penerbit = ucwords(mysql_real_escape_string($_POST['penerbit']));
+				$tahun_terbit = mysql_real_escape_string($_POST['tahun_terbit']);
 				
+				$bahasa = mysql_real_escape_string($_POST['bahasa']);
+				$panjang = mysql_real_escape_string($_POST['panjang']);
+				$lebar = mysql_real_escape_string($_POST['lebar']);
 				
-				$nama_ibu = ucwords(mysql_real_escape_string($_POST['nama_ibu']));
-				$pekerjaan_ibu = mysql_real_escape_string($_POST['pekerjaan_ibu']);
-				$penghasilan_ortu = mysql_real_escape_string($_POST['penghasilan_ortu']);
-				
-				$kendaraan = mysql_real_escape_string($_POST['kendaraan']);
-				$foto = "";
+				$ISBN = mysql_real_escape_string($_POST['ISBN']);
+				$cetakan = mysql_real_escape_string($_POST['cetakan']);
 				$keterangan = mysql_real_escape_string($_POST['keterangan']);
 				
-				$password = "";
 				$user = "admin";
-				// $tgl_daftar_siswa = "";
 				
 				$datestring = "Y-m-d H:i:s";
 				$time = time();
 				
-				$tgl_ubah_siswa = date($datestring, $time);
-				// $tgl_ubah_siswa = "NOW( )";
+				$tgl_daftar_buku = date($datestring, $time);
 				
 				
 				$sqlupdate="UPDATE tbl_buku SET 
-					nisn = '".$nisn."',
-					nama_depan = '".$nama_depan."',
-					nama_belakang = '".$nama_belakang."',
-					nama_panggilan = '".$nama_panggilan."',
-					tempat_lahir = '".$tempat_lahir."',
-					tanggal_lahir = '".$tanggal_lahir."',
-					gol_darah = '".$gol_darah."',
-					agama = '".$agama."',
-					suku = '".$suku."',
-					status_keluarga = '".$status_keluarga."',
-					saudara_ke = '".$saudara_ke."',
-					jumlah_saudara = '".$jumlah_saudara."',
-					warga_negara = '".$warga_negara."',
-					alamat_rumah = '".$alamat_rumah."',
-					kode_pos = '".$kode_pos."',
-					telepon = '".$telepon."',
-					no_hp = '".$no_hp."',
-					jarak = '".$jarak."',
+					kode_buku = '".$kode_buku."',
+					prioritas_buku = '".$prioritas_buku."',
+					judul_buku = '".$judul_buku."',
+					subjek = '".$subjek."',
 					
-					nama_ayah = '".$nama_ayah."',
-					pekerjaan_ayah = '".$pekerjaan_ayah."',
+					penulis = '".$penulis."',
+					penerbit = '".$penerbit."',
+					tahun_terbit = '".$tahun_terbit."',
 					
+					bahasa = '".$bahasa."',
+					panjang = '".$panjang."',
+					lebar = '".$lebar."',
 					
-					nama_ibu = '".$nama_ibu."',
-					pekerjaan_ibu = '".$pekerjaan_ibu."',
-					penghasilan_ortu = '".$penghasilan_ortu."',
-					
-					kendaraan = '".$kendaraan."',
-					foto = '".$foto."',
-					
-					password = '".$password."',
+					ISBN = '".$ISBN."',
+					cetakan = '".$cetakan."',
 					keterangan = '".$keterangan."',
 					
-					tgl_ubah_siswa = '".$tgl_ubah_siswa."'
+					user = '".$user."'
 					
 					
-					WHERE nis='".$nis."'";
+					WHERE kode_buku='".$kode_buku."'";
 					$query=$this->db->query($sqlupdate);
 				
 				if($query){

@@ -45,7 +45,7 @@
 		}
 		function hapus(param){
 			var target="<?php echo site_url() ?>/admin/cbuku/hapus/0/true/2";
-			var xdata={ nis : param }
+			var xdata={ kode_buku : param }
 			var konfirmasi=confirm("Anda yakin ingin menghapus data ini?");
 			
 			
@@ -128,15 +128,11 @@
 			<tr>
 				<td>
 					<select id="key" name="key" style="width: 230px; height: 40px;font-size:20px;font-style:bold;">
-						<option value="username">NIS/NISN</option>
-						<option value="username">Nama Depan</option>
-						<option value="username">Nama Belakang</option>
-						<option value="username">Nama Panggilan</option>
-						<option value="username">Gender</option>
-						<option value="username">Gol. Darah</option>
-						<option value="username">Alamat</option>
-						<option value="username">Nama OrangTua</option>
-						<option value="username">Penghasilan Orangtua</option>
+						<option value="username">Kode Buku</option>
+						<option value="username">Judul Buku</option>
+						<option value="username">Penulis</option>
+						<option value="username">Penerbit</option>
+						<option value="username">Tahun</option>
 					</select>
 				</td>
 				<td>

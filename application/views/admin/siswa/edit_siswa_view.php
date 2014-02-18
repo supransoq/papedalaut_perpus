@@ -35,7 +35,7 @@
     </colgroup>
     <thead>
     	<tr>
-        	<th scope="col">TAMBAH SISWA</th>
+        	<th scope="col">UBAH SISWA</th>
             <th scope="col" style="font-size:14px;font-style:bold;">Menu ini digunakan untuk mengubah data siswa pada sistem<br><span style='color:red;font-size:14px;font-style:bold;'>  *) Wajib diisi. </span></th>
             <th scope="col"></th>
             
@@ -315,7 +315,7 @@
         </tr>
 		<tr>
         	<td>Keterangan : </td>
-            <td><textarea class="ckeditor" name="keterangan" value="<?php echo $siswa['keterangan']; ?>"style="width: 600px; height: 100px;font-size:20px;font-style:bold;"/></td>
+            <td><textarea  name="keterangan" value="" style="width: 600px; height: 100px;font-size:20px;font-style:bold;"><?php echo $siswa['keterangan']; ?></textarea></td>
         </tr>
 		<tr>
 			<td></td>

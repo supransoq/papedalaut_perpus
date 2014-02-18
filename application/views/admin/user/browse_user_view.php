@@ -1,6 +1,5 @@
 <form id="postdata">
 
-
 <?php 		
 	
 	$adaerror = validation_errors();

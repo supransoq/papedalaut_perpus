@@ -1,5 +1,18 @@
 <form id="postdata">
-
+<?php 		
+	
+	$adaerror = validation_errors();
+	
+	if ($adaerror) {
+	
+	echo "<span style='color:red;font-size:18px;font-style:bold;'>";
+	echo "Maaf, data isian tidak benar.<br><br>";
+	echo $adaerror."</span>";
+	
+	} else {
+	echo "<span style='color:blue;font-size:18px;font-style:bold;'>".$notif."</span>";
+	}
+?>
 <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
 <thead>
 	<tr>

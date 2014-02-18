@@ -8,7 +8,7 @@
     <thead>
     	<tr>
         	<th scope="col">LIHAT DATA SISWA</th>
-            <th scope="col" style="font-size:14px;font-style:bold;">Menu ini digunakan untuk melihat data siswa pada sistem<br><span style='color:red;font-size:14px;font-style:bold;'>  *) Wajib diisi. </span></th>
+            <th scope="col" style="font-size:14px;font-style:bold;">Menu ini digunakan untuk melihat data siswa pada sistem<br></th>
             <th scope="col"></th>
             
         </tr>

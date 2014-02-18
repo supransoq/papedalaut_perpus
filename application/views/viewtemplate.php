@@ -40,7 +40,7 @@
     
    		<div id="site_title">
            	<a href="http://www.templatemo.com" target="_parent">
-            	Stable Company<span>Future Web Design Ideas</span>
+            	SIPERPUS<span>The Future Library</span>
             </a>
         </div>
     
